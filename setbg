@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+# argument sets ~/.config/wall.png as the wallpaper, which is required on login
+# if you don't want a blakc screen.
+
+[ ! -z "$1" ] && cp "$1" ~/.config/wallpapers/red_black.jpg && notify-send "Wallpaper changed."
+xwallpaper --zoom ~/.config/wallpapers/red_black.jpg

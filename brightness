@@ -1,0 +1,36 @@
+#!/bin/sh
+#Sofiane Hamlaoui
+
+brightness_level=$(brightnessctl g)
+brightness_max=$(brightnessctl m)
+brightness_percent=$(( $brightness_level * 100 / $brightness_max ))
+brightness_set=$2
+
+increase(){
+	brightnessctl s $brightness_set%+ > /dev/null
+	notify-send -t 1000 -i /home/sofiane/.icons/Flat-Remix-Blue-Dark/panel/gpm-brightness-lcd.svg 'Brightness Up' "$brightness_percent%"
+	return
+}
+
+decrease(){
+	if [[ $brightness_percent > 10 ]]; then
+        brightnessctl s $brightness_set%- > /dev/null
+		notify-send -t 1000  -i /home/sofiane/.icons/Flat-Remix-Blue-Dark/panel/gpm-brightness-lcd-disabled.svg 'Brightness Down' "$brightness_percent%"
+        return
+	elif [[ $brightness_percent = 10 ]]; then
+		brightnessctl s 10% > /dev/null
+		notify-send -t 1000 -i /home/sofiane/.icons/Flat-Remix-Blue-Dark/panel/gpm-brightness-lcd-disabled.svg 'Min value is reached' "$brightness_percent%"
+    fi
+}
+
+
+case "$1" in 
+	"+")
+		increase
+		exit
+		;;
+	"-")
+		decrease
+		exit
+		;;
+esac

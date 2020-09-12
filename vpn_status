@@ -1,0 +1,10 @@
+#!/bin/bash 
+#Sofiane Hamlaoui
+
+if [ $(pgrep nordvpn) ]; then
+	echo "NordVPN"
+elif [ $(pgrep openvpn) ]; then
+	echo "OpenVpn"
+else
+	echo "No VPN"
+fi

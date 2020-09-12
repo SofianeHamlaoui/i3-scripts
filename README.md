@@ -1,2 +1,4 @@
 # i3-scripts
-My Personal scripts I use on my I3 config 
+My Personal scripts I use on my I3 config.
+
+Directory : `.local/bin`
